@@ -1,0 +1,42 @@
+group 'com.gome'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+
+allprojects {
+    ext {
+        SpringBootVersion = '1.5.2.RELEASE'
+        LombokVersion = '1.16.8'
+        Swagger2Version = '2.6.1'
+    }
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+    // JVM 版本号要求
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        maven { url 'http://repo1.maven.org/maven2' }
+        mavenCentral()
+        jcenter()
+    }
+
+    buildscript {
+        // buildscript中的声明是gradle脚本自身需要使用的资源。
+        // 可以声明的资源包括依赖项、第三方插件、maven仓库地址等
+        repositories {
+            maven { url 'http://repo1.maven.org/maven2' }
+            mavenCentral()
+            jcenter()
+        }
+    }
+}
+
+subprojects {
+    // 生成项目目录task
+    task "createDirs" << {
+        sourceSets*.java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    }
+}

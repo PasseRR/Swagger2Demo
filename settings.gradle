@@ -1,0 +1,5 @@
+rootProject.name = 'Swagger2Demo'
+
+include 'http'
+include 'retrofit'
+include 'http-client'
