@@ -43,7 +43,7 @@ public class Swagger2Config {
         );
         return new Docket(DocumentationType.SWAGGER_2)
 //                .globalOperationParameters(parameters)
-                .apiInfo(apiInfo())
+                .apiInfo(this.apiInfo())
                 .select()
                 // controller的base包
                 .apis(RequestHandlerSelectors.basePackage("com.gome.demo.http.controller"))
@@ -55,7 +55,7 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
 //        Contact contact = new Contact("谢海", "https://github.com/PasseRR", "xiehai1@gome.com.cn");
         return new ApiInfoBuilder()
-                .title("Demo For Swagger")
+                .title("Demo For Swagger2")
 //                .contact(contact)
                 .version("1.0")
                 .build();
