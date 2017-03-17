@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("人员信息")
+@ApiModel
 public class PersonVo extends BaseVo {
     @ApiModelProperty("人员id")
     private int id;
