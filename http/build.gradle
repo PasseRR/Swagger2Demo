@@ -2,7 +2,7 @@ group 'com.gome'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 buildscript {
     dependencies {
@@ -15,5 +15,7 @@ dependencies {
     compile "io.springfox:springfox-swagger2:$Swagger2Version"
     compile "io.springfox:springfox-swagger-ui:$Swagger2Version"
     compileOnly "org.projectlombok:lombok:$LombokVersion"
+    testCompile "org.spockframework:spock-core:$SpockVersion"
+    testCompile "org.spockframework:spock-spring:$SpockVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$SpringBootVersion"
 }

@@ -9,6 +9,7 @@ allprojects {
         SpringBootVersion = '1.5.2.RELEASE'
         LombokVersion = '1.16.8'
         Swagger2Version = '2.6.1'
+        SpockVersion = '1.1-groovy-2.4-rc-4'
     }
     // java编译的时候缺省状态下会因为中文字符而失败
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
