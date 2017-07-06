@@ -11,7 +11,7 @@ import spock.lang.Unroll
 
 @WebAppConfiguration
 @ContextConfiguration(classes = DemoApplication.class)
-class TestPersonService extends Specification {
+class PersonServiceSpec extends Specification {
     @Autowired
     PersonService personService;
     @Rule
