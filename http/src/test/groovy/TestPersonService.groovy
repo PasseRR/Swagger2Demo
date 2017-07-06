@@ -14,7 +14,7 @@ class TestPersonService extends Specification {
     PersonService personService;
 
     @Unroll
-    // 动态spec名
+    // 动态spec名 {ElementType.TYPE, ElementType.METHOD}
     def "addPerson:(idCardNo->#idCardNo, sex->#sex, name->#name), expect:#result"() {
         // 前置条件 同setup
         given:
@@ -53,5 +53,36 @@ class TestPersonService extends Specification {
         name << ["zhangsan", "lisi"]
         sex << ["male", "male"]
         result << [true, true]
+    }
+
+    def "throw exception"(){
+        given:
+        Stack<?> stack = new LinkedList<>()
+        when:
+        stack.pop()
+        then:
+        thrown(EmptyStackException)
+    }
+
+    def "fetch exception"(){
+        given:
+        Stack<?> stack = new LinkedList<>()
+        when:
+        stack.pop()
+        then:
+        def e = thrown(EmptyStackException)
+        e.cause == null
+    }
+
+    def "not thrown exception"(){
+        given:
+        Stack<String> stack = new LinkedList<>()
+        stack.push("Hello World")
+        when:
+        def result = stack.pop() >> "haha"
+        then:
+        println result
+        notThrown(Exception)
+        result == "Hello World"
     }
 }
