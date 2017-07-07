@@ -3,8 +3,8 @@ package com.gome.demo.http.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @author xiehai1
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  * @Copyright(c) gome inc Gome Co.,LTD
  */
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @ApiModel
 public class PersonVo extends BaseVo {

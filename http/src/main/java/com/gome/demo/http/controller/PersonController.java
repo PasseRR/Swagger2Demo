@@ -51,6 +51,6 @@ public class PersonController {
     @ApiOperation(value = "获得所有人员信息", notes = "get all persons")
     @RequestMapping(method = RequestMethod.GET)
     public HttpResponseVo<List<PersonVo>> getPerson(){
-        return HttpResponseVo.ok(this.personService.getPerson());
+        return HttpResponseVo.ok(this.personService.getPersons());
     }
 }

@@ -45,7 +45,7 @@ public class PersonService {
         return PERSON_VO_MAP.get(id);
     }
 
-    public List<PersonVo> getPerson(){
+    public List<PersonVo> getPersons(){
         return PERSON_VO_MAP.values()
                 .stream()
                 .sorted((p1, p2) -> p1.getId() - p2.getId())
