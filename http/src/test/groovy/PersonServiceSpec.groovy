@@ -18,19 +18,19 @@ class PersonServiceSpec extends Specification {
     TestName testName;
 
     // 每个spec前置
-    def setupSpec(){
+    def setupSpec() {
 
     }
     // 每个spec后置
-    def cleanupSpec(){
+    def cleanupSpec() {
 
     }
     // 每个方法前置
-    def setup(){
+    def setup() {
         println "begin " + testName.methodName
     }
     // 每个方法后置
-    def cleanup(){
+    def cleanup() {
         println "end " + testName.methodName
     }
 
@@ -39,11 +39,11 @@ class PersonServiceSpec extends Specification {
     def "addPerson:(idCardNo->#idCardNo, sex->#sex, name->#name), expect:#result"() {
         // 前置条件 同setup
         given:
-        def personVo = new PersonVo(
-            idCardNo: idCardNo,
-            sex: sex,
-            name: name
-        );
+        def personVo = PersonVo.builder()
+            .idCardNo(idCardNo)
+            .name(name)
+            .sex(sex)
+            .build()
 
         // 预期
         expect:
@@ -59,14 +59,14 @@ class PersonServiceSpec extends Specification {
     }
 
     @Unroll
-    def "modifyPerson:(id->#id, idCardNo->#idCardNo, sex->#sex, name->#name), expect:#result"(){
+    def "modifyPerson:(id->#id, idCardNo->#idCardNo, sex->#sex, name->#name), expect:#result"() {
         given:
-        def personVo = new PersonVo(
-            id: id,
-            idCardNo: idCardNo,
-            sex: sex,
-            name: name
-        );
+        def personVo = PersonVo.builder()
+            .id(id)
+            .idCardNo(idCardNo)
+            .name(name)
+            .sex(sex)
+            .build()
 
         expect:
         result == this.personService.modifyPerson(personVo)
@@ -80,7 +80,7 @@ class PersonServiceSpec extends Specification {
         result << [true, true]
     }
 
-    def "throw exception"(){
+    def "throw exception"() {
         given:
         Stack<?> stack = new LinkedList<>()
 
@@ -91,7 +91,7 @@ class PersonServiceSpec extends Specification {
         thrown(EmptyStackException)
     }
 
-    def "fetch exception"(){
+    def "fetch exception"() {
         given:
         Stack<?> stack = new LinkedList<>()
 
@@ -103,7 +103,7 @@ class PersonServiceSpec extends Specification {
         e.cause == null
     }
 
-    def "not thrown exception"(){
+    def "not thrown exception"() {
         given:
         Stack<String> stack = new LinkedList<>()
         stack.push("Hello World")
