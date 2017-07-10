@@ -29,7 +29,7 @@ public class PersonSchema {
 
     @GraphQLMutation
     // mutation{updatePerson(person:{id:1,name:"张三",idCardNo:"111",sex:"女"})}
-    public Boolean updatePerson(@GraphQLArgument(name = "person") PersonVo personVo){
+    public Boolean updatePerson(@GraphQLArgument(name = "person") PersonVo personVo) {
         return Boolean.valueOf(this.personService.modifyPerson(personVo));
     }
 
@@ -37,24 +37,25 @@ public class PersonSchema {
     // e.g. mutation {deletePerson(id:1)}
     // 调用两次delete
     // e.g. mutation {first:deletePerson(id:3) second:deletePerson(id:4)}
-    public Boolean deletePerson(@GraphQLArgument(name = "id") Integer id){
+    public Boolean deletePerson(@GraphQLArgument(name = "id") Integer id) {
         return Boolean.valueOf(this.personService.deletePerson(id));
     }
 
     @GraphQLQuery
     // {getPerson(id:1){id, name}}
-    public PersonVo getPerson(@GraphQLArgument(name = "id") Integer id){
+    public PersonVo getPerson(@GraphQLArgument(name = "id") Integer id) {
         return this.personService.getPerson(id);
     }
 
     @GraphQLQuery
     // {getPersons{id, name}}
-    public List<PersonVo> getPersons(){
+    public List<PersonVo> getPersons() {
         return this.personService.getPersons();
     }
 
     @GraphQLQuery
-    public List<PersonVo> queryPersons(@GraphQLArgument(name = "param")QueryParamsVo<PersonVo> paramsVo){
+    // {queryPersons(queryParams:{page:{pageNumber:1, pageSize:10},orderBy:{by:"id",order:"desc"}}){id, name, sex, idCardNo}}
+    public List<PersonVo> queryPersons(@GraphQLArgument(name = "queryParams") QueryParamsVo<PersonVo> paramsVo) {
         return this.personService.queryPersons(paramsVo);
     }
 }
