@@ -1,7 +1,6 @@
 package com.gome.demo.http.controller;
 
-import com.gome.demo.http.schema.GraphQlSchema;
-import com.gome.demo.http.utils.GraphQlUtils;
+import com.gome.demo.http.schema.GraphQlSchemas;
 import com.gome.demo.http.vo.HttpResponseVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,11 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "GraphQlController", description = "人员相关接口")
 public class GraphQlController {
     @Autowired
-    private GraphQlSchema graphQlSchema;
-
+    private GraphQlSchemas graphQlSchemas;
     @ApiOperation(value = "人员信息api", notes = "add one person")
     @RequestMapping(method = RequestMethod.POST)
-    public HttpResponseVo<Boolean> addPerson(@RequestBody String param) {
-        return HttpResponseVo.ok(GraphQlUtils.execute(this.graphQlSchema.personSchema(), param));
+    public HttpResponseVo addPerson(@RequestBody String param) {
+        return HttpResponseVo.ok(this.graphQlSchemas.executePersonSchema(param));
     }
 }

@@ -1,6 +1,7 @@
 package com.gome.demo.http.vo;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -8,9 +9,10 @@ import lombok.Getter;
  * @date 2017/03/14 14:41
  * @Copyright(c) gome inc Gome Co.,LTD
  */
+@Data
 @Builder
 @Getter
-public class HttpResponseVo<T> extends BaseVo {
+public class HttpResponseVo<T> extends BaseVo{
     private String code;
     private String msg;
     private T data;
