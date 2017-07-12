@@ -1,17 +1,13 @@
-import com.gome.demo.http.DemoApplication
-import com.gome.demo.http.service.PersonService
+package com.gome.demo.http.service
+
+import com.gome.demo.http.BaseSpec
 import com.gome.demo.http.vo.PersonVo
 import org.junit.Rule
 import org.junit.rules.TestName
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.web.WebAppConfiguration
-import spock.lang.Specification
 import spock.lang.Unroll
 
-@WebAppConfiguration
-@ContextConfiguration(classes = DemoApplication.class)
-class PersonServiceSpec extends Specification {
+class PersonServiceSpec extends BaseSpec {
     @Autowired
     PersonService personService;
     @Rule
@@ -55,6 +51,10 @@ class PersonServiceSpec extends Specification {
         // |用来分隔输入 ||用来分隔输出
         idCardNo | name   | sex      || result
         "5101"   | "Jack" | "male"   || true
+        // idCardNo重复
+        "5101"   | "John" | "male"   || false
+        // name重复
+        "5102"   | "Jack" | "male"   || false
         "123456" | "Lucy" | "female" || true
     }
 

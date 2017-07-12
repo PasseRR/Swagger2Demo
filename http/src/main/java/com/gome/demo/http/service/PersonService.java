@@ -15,11 +15,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-/**
- * @author xiehai1
- * @date 2017/03/14 14:17
- * @Copyright(c) gome inc Gome Co.,LTD
- */
 @Service
 public class PersonService {
     private static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
@@ -33,6 +28,14 @@ public class PersonService {
     }
 
     public boolean addPerson(PersonVo personVo) {
+        List<PersonVo> collect = PERSON_VO_MAP.values()
+            .stream()
+            .filter(item -> item.getIdCardNo().equals(personVo.getIdCardNo()) || item.getName().equals(personVo.getName()))
+            .collect(Collectors.toList());
+        if(collect != null && collect.size() > 0){
+            return false;
+        }
+
         personVo.setId(ATOMIC_INTEGER.get());
         PERSON_VO_MAP.put(ATOMIC_INTEGER.getAndIncrement(), personVo);
         return true;
