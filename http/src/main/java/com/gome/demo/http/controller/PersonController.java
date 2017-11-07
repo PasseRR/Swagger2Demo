@@ -30,6 +30,12 @@ public class PersonController {
         return HttpResponseVo.ok(this.personService.addPerson(personVo));
     }
 
+    @ApiOperation(value = "添加一个人员信息", notes = "add one person")
+    @RequestMapping(method = RequestMethod.POST, value = "/form")
+    public HttpResponseVo<Boolean> addPersonForm(PersonVo personVo){
+        return HttpResponseVo.ok(this.personService.addPerson(personVo));
+    }
+
     @ApiOperation(value = "修改一个人员信息", notes = "modify one person")
     @RequestMapping(method = RequestMethod.PUT)
     public HttpResponseVo<Boolean> modifyPerson(@RequestBody PersonVo personVo){

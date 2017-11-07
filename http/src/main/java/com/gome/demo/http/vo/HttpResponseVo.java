@@ -17,8 +17,8 @@ public class HttpResponseVo<T> extends BaseVo{
     private String msg;
     private T data;
 
-    public static <T> HttpResponseVo ok(T data) {
-        return HttpResponseVo.builder()
+    public static <T> HttpResponseVo<T> ok(T data) {
+        return HttpResponseVo.<T>builder()
                 .code("00")
                 .data(data)
                 .build();

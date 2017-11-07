@@ -29,4 +29,8 @@ public class PersonVo extends BaseVo {
     @ApiModelProperty(value = "性别", allowableValues = "男, 女")
     @GraphQLQuery
     private String sex;
+
+    public PersonVo(){
+
+    }
 }
